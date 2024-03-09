@@ -13,8 +13,13 @@ const organizeLine = (line: string): GraphData | null => {
   return { date, episode, key: Math.random() };
 };
 
-export const organizeData = (data: string): GraphData[] =>
-  data
+export const organizeData = (data: string): GraphData[] => {
+  const baseData = data
     .split("\n")
     .map(organizeLine)
     .filter((x) => x !== null) as GraphData[];
+  return filterData(baseData);
+};
+
+export const filterData = (data: GraphData[]): GraphData[] =>
+  data.filter((x) => x.episode < 2000);
