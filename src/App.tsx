@@ -9,19 +9,12 @@ import {
   Legend,
 } from "chart.js";
 import { Scatter } from "react-chartjs-2";
+import { mockData } from "./mockData.ts";
 
 ChartJS.register(LinearScale, PointElement, LineElement, Tooltip, Legend);
 
-export const options = {
-  scales: {
-    y: {
-      beginAtZero: true,
-    },
-  },
-};
-
 const App = () => {
-  const [input, setInput] = useState("");
+  const [input, setInput] = useState(mockData);
   const data = useMemo(() => organizeData(input), [input]);
 
   return (
@@ -43,7 +36,6 @@ const App = () => {
         </ul>
       </details>
       <Scatter
-        options={options}
         data={{
           datasets: [
             {
@@ -54,7 +46,6 @@ const App = () => {
           ],
         }}
       />
-      ;
     </div>
   );
 };
